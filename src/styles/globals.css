@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  font-family: 'Courier New', Courier, monospace;
+}
+.choice-button {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.choice-button.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
