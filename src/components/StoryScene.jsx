@@ -10,7 +10,7 @@ const StoryScene = () => {
   const [fadeOutChoice, setFadeOutChoice] = useState(null);
   const [currentAudio, setCurrentAudio] = useState(null); // To manage sound effect audio
   
-  const backgroundMusicUrl = '/assets/sounds/bg-thriller.mp3';
+  const backgroundMusicUrl = '/assets/sounds/bg-love1.mp3';
 
   const startGame = () => {
     setGameStarted(true);
@@ -48,7 +48,9 @@ const StoryScene = () => {
     justifyContent: 'center',
     color: 'white',
     textAlign: 'center',
+    boxShadow: 'inset 0 0 200px rgba(0, 0, 0, 9)',
   };
+  
 
   const handleChoice = (nextScene, sfx, index) => {
     // Stop current sound effect if any
@@ -73,19 +75,20 @@ const StoryScene = () => {
   return (
     <div style={backgroundStyle}>
       <MusicPlayer musicUrl={backgroundMusicUrl} isPlaying={gameStarted}/>
-      <div className="scene-content">
-        <p>{sceneData.text}</p>
+      <div className="scene-content p-10">
+        <p className='bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100'>{sceneData.text}</p>
         <div className="choices">
           {sceneData.choices.map((choice, index) => (
             <button
               key={index}
-              className={`py-2 px-5 m-5 choice-button ${
+              className={`py-2 px-5 m-5 choice-button text-white drop-shadow-[0_0_2px_black] bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 ${
                 fadeOutChoice === index ? 'fade-out' : ''
-              } ${index === 0 ? "hover:text-white hover:text-opacity-100 text-opacity-40 text-white font-bold" : "hover:text-white hover:text-opacity-100 text-opacity-40 text-white font-bold"}`}
+              } ${index === 0 ? "hover:text-white text-opacity-40 text-white font-bold" : "hover:text-white hover:text-opacity-100 text-opacity-40 text-white font-bold"}`}
               onClick={() => handleChoice(choice.nextScene, choice.sfx, index)}
             >
               {choice.text}
             </button>
+            
           ))}
         </div>
       </div>

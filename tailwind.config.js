@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      textShadow: {
+        'border': '0px 0px 3px rgba(0, 0, 0, 1)', // Customize the border effect
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
