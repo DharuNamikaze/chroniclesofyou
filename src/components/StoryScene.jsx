@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import getStoryData from '../data/StoryData';
 import LandingPage from '../components/Landingpage';
 import MusicPlayer from '../components/MusicPlayer';
@@ -7,13 +7,25 @@ import MusicPlayer from '../components/MusicPlayer';
 const StoryScene = () => {
   const [currentScene, setCurrentScene] = useState('landing');
   const [gameStarted, setGameStarted] = useState(false);
-  const [fadeOutChoice, setFadeOutChoice] = useState(null); // Track which choice is fading out
+  const [fadeOutChoice, setFadeOutChoice] = useState(null);
+  const [currentAudio, setCurrentAudio] = useState(null); // To manage sound effect audio
+  
+  const backgroundMusicUrl = '/assets/sounds/bg-thriller.mp3';
 
-  const backgroundMusicUrl = '/assets/sounds/bg-thriller.mp3'
   const startGame = () => {
     setGameStarted(true);
     setCurrentScene('intro');
   };
+
+  useEffect(() => {
+    // Clean up currentAudio when component unmounts
+    return () => {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+    };
+  }, [currentAudio]);
 
   if (!gameStarted) {
     return <LandingPage startGame={startGame} />;
@@ -39,14 +51,23 @@ const StoryScene = () => {
   };
 
   const handleChoice = (nextScene, sfx, index) => {
+    // Stop current sound effect if any
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    // Play new sound effect
     const audio = new Audio(sfx);
     audio.play();
-    setFadeOutChoice(index); // Mark the choice to fade out
+    setCurrentAudio(audio); // Update current audio to the new one
+
+    setFadeOutChoice(index);
 
     setTimeout(() => {
       setCurrentScene(nextScene); // Move to the next scene after fade-out
-      setFadeOutChoice(null); // Reset fade-out choice for the next set of buttons
-    }, 1000); // Match the duration of the CSS fade-out animation
+      setFadeOutChoice(null);
+    }, 1000);
   };
 
   return (
@@ -57,13 +78,13 @@ const StoryScene = () => {
         <div className="choices">
           {sceneData.choices.map((choice, index) => (
             <button
-            key={index}
-            className={`py-2 px-5 m-5 choice-button ${
-              fadeOutChoice === index ? 'fade-out' : ''
-            } ${index === 0 ? " hover:text-white hover:text-opacity-100 text-opacity-40 text-white font-bold" : " text-white font-bold"}`}
-            onClick={() => handleChoice(choice.nextScene, choice.sfx, index)}
-          >
-            {choice.text}
+              key={index}
+              className={`py-2 px-5 m-5 choice-button ${
+                fadeOutChoice === index ? 'fade-out' : ''
+              } ${index === 0 ? "hover:text-white hover:text-opacity-100 text-opacity-40 text-white font-bold" : "hover:text-white hover:text-opacity-100 text-opacity-40 text-white font-bold"}`}
+              onClick={() => handleChoice(choice.nextScene, choice.sfx, index)}
+            >
+              {choice.text}
             </button>
           ))}
         </div>
