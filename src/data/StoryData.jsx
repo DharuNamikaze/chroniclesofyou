@@ -1,6 +1,6 @@
 const getStoryData = () => ({
   intro: {
-    text: "You’re sitting on a crowded bus, heading toward the station with a sense of excitement and nerves about starting college.--a stranger sitting two seats behind you takes a blink of you.",
+    text: "You’re sitting on a crowded bus, heading toward the station with a sense of excitement and nerves about starting college.--a stranger sitting two seats behind you takes a blink at you.",
     choices: [
       { text: "Notice her", nextScene: "noticescene", sfx: "/sfx/sparkle1.mp3" },
       { text: "Nevermind", nextScene: "ignorescene", sfx: "/sfx/refuse1.mp3" },
@@ -18,16 +18,16 @@ const getStoryData = () => ({
   },
   // this scene contiues when you click the 2nd option during the intro
   ignorescene: {
-    text: "You walk out and find the boys dormi n a dense forest.",
+    text: "You have travelled all the way from your hometown to a new city to join college, after you finished your admission process you would like to..",
     choices: [
-      { text: "Look around", nextScene: "forestScene", sfx: "/sfx/refuseleave.mp3" },
-      { text: "Continue walking", nextScene: "pathScene", sfx: "/sfx/refuseleave.mp3" },
+      { text: "go to the boys dorm", nextScene: "forestScene", sfx: "/sfx/refuseleave.mp3" },
+      { text: "Check out the infrastructure", nextScene: "pathScene", sfx: "/sfx/refuseleave.mp3" },
     ],
    backgroundImage: "/assets/introscene.jpg"
   },
   // More scenes...
   tryingToTalk: {
-    text: "You walk out and find yourself in a dense forest.",
+    text: "You tried but you didn't",
     choices: [
       { text: "Look around", nextScene: "forestScene", sfx: "/sfx/refuseleave.mp3" },
       { text: "Continue walking", nextScene: "pathScene", sfx: "/sfx/refuseleave.mp3" },

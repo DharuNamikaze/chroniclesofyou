@@ -10,7 +10,7 @@ const StoryScene = () => {
   const [fadeOutChoice, setFadeOutChoice] = useState(null);
   const [currentAudio, setCurrentAudio] = useState(null); // To manage sound effect audio
   
-  const backgroundMusicUrl = '/assets/sounds/bg-love1.mp3';
+  const backgroundMusicUrl = '/assets/sounds/bg-love.mp3';
 
   const startGame = () => {
     setGameStarted(true);
@@ -73,10 +73,10 @@ const StoryScene = () => {
   };
 
   return (
-    <div style={backgroundStyle}>
+    <div style={backgroundStyle} className=''>
       <MusicPlayer musicUrl={backgroundMusicUrl} isPlaying={gameStarted}/>
-      <div className="scene-content p-10">
-        <p className='bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100'>{sceneData.text}</p>
+      <div className="scene-content  bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-10">
+        <p className=''>{sceneData.text}</p>
         <div className="choices">
           {sceneData.choices.map((choice, index) => (
             <button
