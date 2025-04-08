@@ -9,7 +9,7 @@ const getStoryData = () => ({
   }, 
   // writing nextscene in the above choice leads you to this choice below
   noticescene: {
-    text: "You have travelled all the way from your hometown to a new city to join college, you recognize the girl in the college and the stranger who was at the bus...",
+    text: "You have travelled all the way from your hometown to a new city to join college, you recognize a girl in college who was the strager at the bus...",
     choices: [
       { text: "Try to Talk", nextScene: "tryingToTalk", sfx: "/sfx/tryingToTalk.mp3" },
       { text: "Nevermind", nextScene: "neverMindAgain", sfx: "/sfx/neverMindAgain2.mp3" },
