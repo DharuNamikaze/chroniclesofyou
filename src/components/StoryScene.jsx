@@ -35,7 +35,7 @@ const StoryScene = () => {
   const sceneData = storyData[currentScene];
 
   if (!sceneData) {
-    return <div>Loading scene...</div>;
+    return <div className='h-full max-auto flex justify-center items-center text-center'>Loading scene...</div>;
   }
 
   const backgroundStyle = {
